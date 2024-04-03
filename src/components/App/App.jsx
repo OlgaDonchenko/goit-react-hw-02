@@ -11,28 +11,29 @@ export default function App() {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
   const [reset, setShowReset] = useState(false);
+  const [showNotification, setShowNotification] = useState(true);
 
   const handleGoodClick = () => {
     setGood(good + 1);
     setShowReset(true);
-    // setShowNotification(false);
+    setShowNotification(false);
   };
   const handleNeutralClick = () => {
     setNeutral(neutral + 1);
     setShowReset(true);
-    // setShowNotification(false);
+    setShowNotification(false);
   };
   const handleBadClick = () => {
     setBad(bad + 1);
     setShowReset(true);
-    // setShowNotification(false);
+    setShowNotification(false);
   };
   const handleResetClick = () => {
     setGood(0);
     setNeutral(0);
     setBad(0);
     setShowReset(false);
-    // setShowNotification(true);
+    setShowNotification(true);
   };
 
   return (
@@ -45,7 +46,11 @@ export default function App() {
       />
 
       {reset && <button onClick={handleResetClick}>Reset</button>}
-      <Feedback good={good} neutral={neutral} bad={bad} />
+      {showNotification ? (
+        <Notification />
+      ) : (
+        <Feedback good={good} neutral={neutral} bad={bad} />
+      )}
     </div>
   );
 }
