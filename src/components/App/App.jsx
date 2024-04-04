@@ -1,5 +1,4 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import "./App.css";
 import Description from "../Description/Description";
 import Options from "../Options/Options";
@@ -12,6 +11,18 @@ export default function App() {
   const [bad, setBad] = useState(0);
   const [reset, setShowReset] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
+
+  // const [clicks, setClicks] = useState(() => {
+  //   const savedClicks = window.localStorage.getItem("saved-clicks");
+  //   if (savedClicks !== null) {
+  //     return savedClicks;
+  //   }
+  //   return 0;
+  // });
+
+  // useEffect(() => {
+  //   window.localStorage.setItem("saved-clicks", clicks);
+  // }, [clicks]);
 
   const handleGoodClick = () => {
     setGood(good + 1);
