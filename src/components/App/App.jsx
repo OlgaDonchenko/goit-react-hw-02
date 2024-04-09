@@ -12,39 +12,45 @@ export default function App() {
   const [reset, setShowReset] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
 
-  // const [clicks, setClicks] = useState(() => {
-  //   const savedClicks = window.localStorage.getItem("saved-clicks");
-  //   if (savedClicks !== null) {
-  //     return savedClicks;
-  //   }
-  //   return 0;
-  // });
+  useEffect(() => {
+    const savedClicks = JSON.parse(window.localStorage.getItem("saved-clicks"));
+    if (savedClicks) {
+      setGood(savedClicks.good || 0);
+      setNeutral(savedClicks.neutral || 0);
+      setBad(savedClicks.bad || 0);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   window.localStorage.setItem("saved-clicks", clicks);
-  // }, [clicks]);
+  useEffect(() => {
+    const savedClicks = JSON.stringify({ good, neutral, bad });
+    window.localStorage.setItem("saved-clicks", savedClicks);
+  }, [good, neutral, bad]);
 
   const handleGoodClick = () => {
     setGood(good + 1);
     setShowReset(true);
     setShowNotification(false);
   };
+
   const handleNeutralClick = () => {
     setNeutral(neutral + 1);
     setShowReset(true);
     setShowNotification(false);
   };
+
   const handleBadClick = () => {
     setBad(bad + 1);
     setShowReset(true);
     setShowNotification(false);
   };
+
   const handleResetClick = () => {
     setGood(0);
     setNeutral(0);
     setBad(0);
     setShowReset(false);
     setShowNotification(true);
+    window.localStorage.removeItem("saved-clicks");
   };
 
   return (

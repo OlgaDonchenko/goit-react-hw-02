@@ -1,0 +1,9 @@
+.list {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.btn {
+  width: 90px;
+}

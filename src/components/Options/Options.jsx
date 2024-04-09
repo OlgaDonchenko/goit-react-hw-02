@@ -1,10 +1,18 @@
 import React from "react";
+import css from "./Option.module.css";
 export default function Options({ onGoodClick, onNeutralClick, onBadClick }) {
   return (
-    <>
-      <button onClick={onGoodClick}>Good</button>
-      <button onClick={onNeutralClick}>Neutral</button>
-      <button onClick={onBadClick}> Bad</button>
-    </>
+    <div className={css.list}>
+      <button className={css.btn} onClick={onGoodClick}>
+        Good
+      </button>
+      <button className={css.btn} onClick={onNeutralClick}>
+        Neutral
+      </button>
+      <button className={css.btn} onClick={onBadClick}>
+        {" "}
+        Bad
+      </button>
+    </div>
   );
 }
