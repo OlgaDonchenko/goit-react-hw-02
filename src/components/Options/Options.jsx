@@ -1,6 +1,11 @@
 import React from "react";
 import css from "./Option.module.css";
-export default function Options({ onGoodClick, onNeutralClick, onBadClick }) {
+export default function Options({
+  onGoodClick,
+  onNeutralClick,
+  onBadClick,
+  onReset,
+}) {
   return (
     <div className={css.list}>
       <button className={css.btn} onClick={onGoodClick}>
@@ -12,6 +17,9 @@ export default function Options({ onGoodClick, onNeutralClick, onBadClick }) {
       <button className={css.btn} onClick={onBadClick}>
         {" "}
         Bad
+      </button>
+      <button className={css.btn} onClick={onReset}>
+        Reset
       </button>
     </div>
   );

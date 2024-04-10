@@ -1,7 +1,7 @@
 import React from "react";
-export default function Feedback({ good, bad, neutral }) {
+export default function Feedback({ good, bad, neutral, positivePercent }) {
   const total = good + bad + neutral;
-  const positivePercent = Math.round((good / total) * 100);
+
   return (
     <>
       <p>Good: {good}</p>
