@@ -6,14 +6,14 @@ import Feedback from "../Feedback/Feedback";
 import Notification from "../Notification/Notification ";
 
 export default function App() {
-  const [feedback, setFeetback] = useState({ good: 0, neutral: 0, bad: 0 });
+  const [feedback, setFeedback] = useState({ good: 0, neutral: 0, bad: 0 });
 
   useEffect(() => {
     const savedFeedback = JSON.parse(
       window.localStorage.getItem("saved-feedback")
     );
     if (savedFeedback) {
-      setFeetback(savedFeedback);
+      setFeedback(savedFeedback);
     }
   }, []);
 
@@ -25,15 +25,14 @@ export default function App() {
     totalFeedback > 0 ? Math.round((feedback.good / totalFeedback) * 100) : 0;
 
   const handleFeedback = (type) => {
-    setFeetback((prevFeedback) => ({
+    setFeedback((prevFeedback) => ({
       ...prevFeedback,
       [type]: prevFeedback[type] + 1,
     }));
   };
 
   const handleResetClick = () => {
-    setFeetback({ good: 0, neutral: 0, bad: 0 });
-    window.localStorage.removeItem("saved-feedback");
+    setFeedback({ good: 0, neutral: 0, bad: 0 });
   };
 
   return (
@@ -43,8 +42,10 @@ export default function App() {
         onGoodClick={() => handleFeedback("good")}
         onNeutralClick={() => handleFeedback("neutral")}
         onBadClick={() => handleFeedback("bad")}
+        onReset={handleResetClick}
+        totalFeedback={totalFeedback}
       />
-      {totalFeedback > 0 && <button onClick={handleResetClick}>Reset</button>}
+
       {totalFeedback > 0 ? (
         <Feedback
           good={feedback.good}

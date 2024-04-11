@@ -5,6 +5,7 @@ export default function Options({
   onNeutralClick,
   onBadClick,
   onReset,
+  totalFeedback,
 }) {
   return (
     <div className={css.list}>
@@ -18,9 +19,11 @@ export default function Options({
         {" "}
         Bad
       </button>
-      <button className={css.btn} onClick={onReset}>
-        Reset
-      </button>
+      {totalFeedback > 0 && (
+        <button className={css.btn} onClick={onReset}>
+          Reset
+        </button>
+      )}
     </div>
   );
 }
